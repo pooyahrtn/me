@@ -2,11 +2,11 @@ version: '2'
 services:
   web:
     image: nginx:stable-alpine
-    container_name: "${VIRTUAL_HOST}"
+    container_name: "pooyaharatian.me"
     environment:
-      - "VIRTUAL_HOST=${VIRTUAL_HOST}"
-      - "LETSENCRYPT_HOST=${VIRTUAL_HOST}"
-      - "LETSENCRYPT_EMAIL=${EMAIL}"
+      - "VIRTUAL_HOST=pooyaharatian.me"
+      - "LETSENCRYPT_HOST=pooyaharatian.me"
+      - "LETSENCRYPT_EMAIL=pooyaharatian@gmail.com"
     expose:
       - "80"
     volumes:
