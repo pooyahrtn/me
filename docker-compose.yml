@@ -33,6 +33,7 @@ services:
       WORDPRESS_DB_USER: exampleuser
       WORDPRESS_DB_PASSWORD: examplepass
       WORDPRESS_DB_NAME: exampledb
+      WORDPRESS_CONFIG_EXTRA: define( 'WP_SITEURL', '/irca' ); define( 'WP_HOME', '/irca' ); 
 
   msqldb:
     image: mysql:5.7
