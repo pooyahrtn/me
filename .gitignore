@@ -3,3 +3,4 @@ data/wordpress/
 data/mysql/
 data/certbot/
 deploy.sh
+web/applicationfile/*
