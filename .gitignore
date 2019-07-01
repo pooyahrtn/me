@@ -2,3 +2,4 @@ nginx-proxy/
 data/wordpress/
 data/mysql/
 data/certbot/
+deploy.sh
