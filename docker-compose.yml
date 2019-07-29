@@ -6,44 +6,6 @@ services:
     ports:
       - "80:80"
       - "443:443"
-    volumes:
-      - ./data/nginx:/etc/nginx/conf.d
-      - ./data/certbot/conf:/etc/letsencrypt
-      - ./data/certbot/www:/var/www/certbot
-      - ./web:/var/www/html
     command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
-    depends_on: 
-      - wordpress
-  certbot:
-    image: certbot/certbot
-    volumes: 
-      - ./data/certbot/conf:/etc/letsencrypt
-      - ./data/certbot/www:/var/www/certbot
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
-  
-  wordpress:
-    image: wordpress
-    restart: always
-    container_name: wordpress
-    volumes: 
-      - ./data/wordpress:/var/www/html
-    depends_on: 
-      - msqldb
-    environment:
-      WORDPRESS_DB_HOST: msqldb
-      WORDPRESS_DB_USER: exampleuser
-      WORDPRESS_DB_PASSWORD: examplepass
-      WORDPRESS_DB_NAME: exampledb
-      WORDPRESS_CONFIG_EXTRA: define( 'WP_SITEURL', '/irca' ); define( 'WP_HOME', '/irca' ); 
 
-  msqldb:
-    image: mysql:5.7
-    restart: always
-    container_name: msqldb
-    volumes:
-      - ./data/mysql:/var/lib/mysql
-    environment:
-      MYSQL_DATABASE: exampledb
-      MYSQL_USER: exampleuser
-      MYSQL_PASSWORD: examplepass
-      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    
