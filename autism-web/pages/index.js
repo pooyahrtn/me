@@ -13,10 +13,12 @@ import fetch from 'isomorphic-unfetch';
 class Index extends React.Component {
 
     static async getInitialProps({ req }) {
-        const res = await fetch('http://dautism:8000/exams/exams/0/');
+        const url = process.env.URL;
+        const res = await fetch(`${url}/exams/exams/0/`);
         const data = await res.json();
         return { data };
     }
+
     result = {
         version: 0,
         answers: {},
@@ -31,6 +33,7 @@ class Index extends React.Component {
         age: '',
         name: '',
         mute: true,
+        data: [],
     }
 
     onItemClick = (index) => {

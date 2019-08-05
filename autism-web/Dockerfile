@@ -1,4 +1,4 @@
-FROM node:10
+FROM node:12
 
 # Setting working directory. All the path will be relative to WORKDIR
 WORKDIR /usr/src/app
@@ -13,6 +13,6 @@ COPY . .
 # Building app
 RUN npm run build
 
-EXPOSE 3000
-# Running the app
-CMD [ "npm", "start" ]
+# EXPOSE 3000
+# # Running the app
+# CMD [ "npm", "start" ]

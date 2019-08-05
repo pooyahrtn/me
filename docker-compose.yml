@@ -3,9 +3,37 @@ services:
   nginx:
     image: nginx:1.15-alpine
     container_name: nginx
-    ports:
-      - "80:80"
-      - "443:443"
-    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+  
+    # volumes: 
+    #   - media:/code/media
+    # ports:
+    #   - "80:80"
+    #   - "443:443"
+    # command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
 
+  autismweb:
+    container_name: "autismweb"
+    build: 
+      context: ./autism-web
+    ports: 
+      - "3000:3000"
+    volumes: 
+      - ./autism-web/pages:/usr/src/app/pages
+      - ./autism-web/components:/usr/src/app/components
+    command: >
+      npm run dev
     
+
+  dautism:
+    container_name: 'dautism'
+    build: 
+      context: ./dautism
+    volumes: 
+      - ./dautism:/code/
+    environment: 
+      - PORT=8000
+    ports: 
+      - "8000:8000"
+
+volumes: 
+  media:

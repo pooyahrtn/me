@@ -1,12 +1,14 @@
 version: '3'
 services:
-    nginx:
-      image: nginx:1.15-alpine
-      container_name: nginx
-      ports:
-        - "8001:80"
-      volumes: 
-        - ./data/nginx-dev:/etc/nginx/conf.d
-        - ./web:/var/www/html
-      command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+  nginx:
+    ports:
+      - "80:80"
+    volumes: 
+      - ./data/nginx-dev:/etc/nginx/conf.d
+      - ./web:/var/www/html
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
     
+  autismweb:
+    environment: 
+      - URL=http://192.168.1.9:8000
+      
