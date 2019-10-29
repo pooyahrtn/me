@@ -20,7 +20,7 @@ kombu==4.6.3
 lazy-object-proxy==1.4.1
 mccabe==0.6.1
 newrelic==4.20.1.121
-Pillow==6.1.0
+Pillow==6.2.0
 progressbar2==3.42.0
 psycopg2==2.8.3
 pycodestyle==2.5.0
